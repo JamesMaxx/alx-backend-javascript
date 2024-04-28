@@ -1,3 +1,6 @@
-export default function appendToArrayValues(arr, suffix) {
-  return arr.map((value) => value + suffix);
+export default function appendToEachArrayValue(array, appendString) {
+  for (const value of array) {
+    array[array.indexOf(value)] = appendString + value;
+  }
+  return array;
 }
