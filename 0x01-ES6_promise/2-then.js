@@ -3,4 +3,4 @@ function handleResponseFromAPI(promise) {
     status: 200,
     body: 'success',
   }));
-} 
+}
