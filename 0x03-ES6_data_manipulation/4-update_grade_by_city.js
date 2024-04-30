@@ -1,9 +1,8 @@
-const updateStudentGradeByCity = (students, city, newGrades) => students
-  .filter((student) => student.location === city)
-  .map((student) => {
-    const { grade } = newGrades.find((g) => g.studentId === student.id);
-    return {
+const updateGradesByCity = (students, city, newGrades) => (
+  students
+    .filter((student) => student.location === city)
+    .map((student) => ({
       ...student,
-      grade: grade || 'N/A',
-    };
-  });
+      grade: newGrades.find((grade) => grade.studentId === student.id)?.grade || 'N/A',
+    }))
+);
