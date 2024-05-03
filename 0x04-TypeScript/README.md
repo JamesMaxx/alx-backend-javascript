@@ -16,7 +16,7 @@ Access and manipulate the Document Object Model (DOM) using TypeScript, includin
 
 Use generic types to create reusable components and functions that work with a variety of data types.
 
-## Namespaces
+## Namespacesx  
 
 Organize your code using namespaces to prevent naming collisions and improve code organization.
 
