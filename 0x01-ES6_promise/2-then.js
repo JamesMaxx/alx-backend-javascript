@@ -1,24 +1,23 @@
+#!/usr/bin/node
+
 /**
- * Handle the response from the API
- * @param {Promise} promise - The promise from the API
- * @return {Promise} A new promise that resolves with the response object
- *                   or rejects with an error
+ * Appends handlers to the handleResponseFromAPI function.
+ * @param {Promise} promise - The Promise to handle.
+ * @returns {Promise} A Promise that resolves to an object or rejects with an Error.
  */
 function handleResponseFromAPI(promise) {
-  return promise
-    .then(() => {
-      // Got a response from the API
-      console.log('Got a response from the API');
-      // Return a success response
-      return {
-        status: 200,
-        body: 'success',
-      };
-    })
-    .catch((error) => {
-      // Got a response from the API
-      console.log('Got a response from the API');
-      // Return an error
-      return error;
-    });
+  // Append a handler for when the Promise resolves
+  const resolveHandler = promise.then(() => {
+    console.log('Got a response from the API'); // Log message on resolution
+    return { status: 200, body: 'success' }; // Return object on resolution
+  });
+
+  // Append a handler for when the Promise rejects
+  const rejectHandler = promise.catch(() => new Error()); // Return empty Error object on rejection
+
+  // Return a Promise that resolves to an object or rejects with an Error
+  return Promise.race([resolveHandler, rejectHandler]);
 }
+
+// Export the function to make it accessible from other modules
+module.exports = handleResponseFromAPI;
